@@ -52,3 +52,9 @@ extension NSMutableAttributedString {
     }
 
 }
+
+extension UIStackView {
+    func addArrangedSubviews(_ subviews: [UIStackView]) {
+        subviews.forEach{ self.addArrangedSubview($0) }
+    }
+}
