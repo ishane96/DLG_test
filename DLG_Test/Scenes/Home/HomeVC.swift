@@ -9,6 +9,11 @@ import UIKit
 
 class HomeVC: UIViewController {
     
+    let tryButton = UIButton()
+    let titleLbl = UILabel()
+    let descriptionLbl = UILabel()
+    let stackView = UIStackView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -16,33 +21,30 @@ class HomeVC: UIViewController {
     
     func setupUI(){
         
-        navigationItem.title = "NEW FEATURE"
+        navigationItem.title = String.NewFeature
         self.view.backgroundColor = UIColor(named: "black")
         
-        let titleLbl = UILabel()
-        titleLbl.designable(fullText: "MAKING CARS EASY.", text: "MAKING CARS EASY", text2: ".", font: UIFont(name: "Oswald-Regular", size: 30)!, firstColor: UIColor(named: "white")!)
+        titleLbl.designable(fullText: String.makingCarsEasy, text: "MAKING CARS EASY", text2: ".", font: UIFont(name: "Oswald-Regular", size: 30)!, firstColor: UIColor(named: "white")!)
         
-        let descriptionLbl = UILabel()
-        descriptionLbl.text = "We've got a brilliant new vehicle search feature.. why not give it a try!"
+        descriptionLbl.text = String.WeGotBrilliant
         descriptionLbl.designable(fullText: descriptionLbl.text!, text: descriptionLbl.text!, text2: "", font: UIFont(name: "Roboto-Light", size: 18)!, firstColor: UIColor(named: "white")!)
         descriptionLbl.numberOfLines = 2
         
-        let tryButton = UIButton()
-        tryButton.designable(title: "TRY IT OUT")
+        tryButton.designable(title: String.TryButton)
         tryButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
-        let stackView = UIStackView()
+        
+        
         stackView.axis  = NSLayoutConstraint.Axis.vertical
         stackView.distribution  = UIStackView.Distribution.equalSpacing
         stackView.alignment = UIStackView.Alignment.center
         stackView.spacing = 30
-
+        
         stackView.addArrangedSubview(titleLbl)
         stackView.addArrangedSubview(descriptionLbl)
         stackView.addArrangedSubview(tryButton)
         stackView.translatesAutoresizingMaskIntoConstraints = false;
         self.view.addSubview(stackView)
-
+        
         //Constraints
         stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         
@@ -52,7 +54,7 @@ class HomeVC: UIViewController {
         tryButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor).isActive = true
         
     }
-
+    
     @objc func buttonAction(sender: UIButton!) {
         let vc = SearchVC()
         self.navigationController?.pushViewController(vc, animated: true)

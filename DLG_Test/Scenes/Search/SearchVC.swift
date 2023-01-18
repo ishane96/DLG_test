@@ -9,7 +9,7 @@ import UIKit
 
 class SearchVC: UIViewController {
     
-    //    let vm = SearchVM()
+    let vm = SearchVM()
     
     let scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -48,27 +48,23 @@ class SearchVC: UIViewController {
     let motResult = UILabel()
     let successView = UIView()
     let failedStack = UIStackView()
-    
-    
+    let failedView = UIView()
+    let errorLbl = UILabel()
+    let errorHintLbl = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-        
-        
-        self.configSuccessView()
-        
     }
     
     func setupUI(){
-        navigationItem.title = "SEARCH TOOL"
+        navigationItem.title = String.Search
         self.view.backgroundColor = UIColor(named: "black")
         
-        titleLbl.designable(fullText: "WHAT'S YOUR VEHICLE REG?.", text: "WHAT'S YOUR VEHICLE REG", text2: "?", font: UIFont(name: "Oswald-Regular", size: 30)!, firstColor: UIColor(named: "white")!)
+        titleLbl.designable(fullText: String.WhatsYourVehicleReg, text: String.WhatsYourVehicleReg, text2: "?", font: UIFont(name: "Oswald-Regular", size: 30)!, firstColor: UIColor(named: "white")!)
         titleLbl.numberOfLines = 2
         self.view.addSubview(titleLbl)
-        
         
         let image = UIImage(named: "gbFlag")
         let flagView = UIImageView(image: image!)
@@ -76,7 +72,6 @@ class SearchVC: UIViewController {
         flagView.frame = CGRect(x: 0, y: 0, width: 18, height: 20)
         self.view.addSubview(flagView)
         self.view.bringSubviewToFront(flagView)
-        
         
         countryNm.designable(fullText: "GB", text: "GB", text2: "", font: UIFont(name: "Oswald-Regular", size: 15)!, firstColor: UIColor(named: "yellow")!)
         self.view.addSubview(countryNm)
@@ -86,30 +81,33 @@ class SearchVC: UIViewController {
         flagStackView.distribution  = UIStackView.Distribution.fill
         flagStackView.alignment = UIStackView.Alignment.center
         flagStackView.spacing = 0
-        flagStackView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        flagStackView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         
         flagStackView.addArrangedSubview(flagView)
         flagStackView.addArrangedSubview(countryNm)
         
-        textField.placeholder = "ENTER REG"
+        textField.placeholder = String.TextFieldPlaceHolder
         textField.backgroundColor = UIColor(named: "white")
         self.view.addSubview(textField)
         
+        let spaceView = UIView()
+        spaceView.backgroundColor = UIColor(named: "black")
+        spaceView.widthAnchor.constraint(equalToConstant: 10).isActive = true
+        
         let goBtn = UIButton()
-        goBtn.designable(title: "GO")
-        goBtn.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        goBtn.designable(title: String.GoButton)
+        goBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
         goBtn.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         self.view.addSubview(goBtn)
         
         textFieldStackVw.axis = NSLayoutConstraint.Axis.horizontal
-        textFieldStackVw.backgroundColor = .green
         textFieldStackVw.distribution  = UIStackView.Distribution.fill
-        textFieldStackVw.alignment = UIStackView.Alignment.center
         textFieldStackVw.spacing = 0
         
         textFieldStackVw.addArrangedSubview(flagStackView)
         textFieldStackVw.addArrangedSubview(textField)
+        textFieldStackVw.addArrangedSubview(spaceView)
         textFieldStackVw.addArrangedSubview(goBtn)
         self.view.addSubview(textFieldStackVw)
         
@@ -126,23 +124,42 @@ class SearchVC: UIViewController {
         textField.heightAnchor.constraint(equalTo: textFieldStackVw.heightAnchor).isActive = true
         
         setupScrollView()
-        
-        
+        addBackButton()
     }
     
+    func addBackButton() {
+        let backButton = UIButton(type: .custom)
+        backButton.setImage(UIImage(named: "back"), for: .normal)
+        backButton.setTitleColor(backButton.tintColor, for: .normal)
+        backButton.addTarget(self, action: #selector(self.backAction(_:)), for: .touchUpInside)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+    
+    @objc func backAction(_ sender: UIButton) {
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
     @objc func buttonAction(sender: UIButton!) {
-        //        vm.getVehicleDetails(registration: textField.text ?? "") { success, message in
-        //            if success {
-        //                DispatchQueue.main.async {
-        //                    self.configSuccessView()
-        //                    print(success)
-        //                }
-        //            } else {
-        //                DispatchQueue.main.async {
-        //                    self.configFailedView()
-        //                }
-        //            }
-        //        }
+        getVehicle()
+    }
+    
+    func getVehicle(){
+        vm.getVehicleDetails(registration: textField.text ?? "") {[weak self] success, message in
+            guard let self = self else {return}
+            if success {
+                DispatchQueue.main.async {
+                    self.successView.removeFromSuperview()
+                    self.failedStack.removeFromSuperview()
+                    self.configSuccessView()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.failedStack.removeFromSuperview()
+                    self.successView.removeFromSuperview()
+                    self.configFailedView()
+                }
+            }
+        }
     }
     
     
@@ -168,157 +185,153 @@ class SearchVC: UIViewController {
         scrollStackViewContainer.addArrangedSubview(titleLbl)
         scrollStackViewContainer.addArrangedSubview(textFieldStackVw)
         scrollStackViewContainer.addArrangedSubview(successView)
-        scrollStackViewContainer.addArrangedSubview(failedStack)
     }
     
     func configSuccessView(){
+        let greenView = UIView()
+        greenView.heightAnchor.constraint(equalToConstant: 5).isActive = true
+        greenView.backgroundColor = UIColor(named: "green")
         
         successView.backgroundColor = UIColor(named: "darkGray")
-        successView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        successView.heightAnchor.constraint(equalToConstant: 270).isActive = true
         successView.translatesAutoresizingMaskIntoConstraints = false;
         
-        
         view.addSubview(successView)
-        let margins = view.layoutMarginsGuide
         
+        let margins = view.layoutMarginsGuide
         successView.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
-        successView.leadingAnchor.constraint(equalTo: flagStackView.leadingAnchor, constant: 20).isActive = true
+        successView.leadingAnchor.constraint(equalTo: flagStackView.leadingAnchor).isActive = true
         successView.topAnchor.constraint(equalTo: flagStackView.topAnchor, constant: 60).isActive = true
         successView.translatesAutoresizingMaskIntoConstraints = false;
         
-        makeLbl.resultDescription(text: "Make")
-        makeResult.result(text: "KIA")
-
-        modelLbl.resultDescription(text: "Model")
-        modelResultLbl.result(text: "Picanto")
+        makeLbl.resultDescription(text: String.Make)
+        makeResult.result(text: vm.vehicle?.make ?? "N/A")
         
-        detailLbl.resultDescription(text: "Details")
-        detailResult.result(text: "125GT-line5d")
+        modelLbl.resultDescription(text: String.Model)
+        modelResultLbl.result(text: vm.vehicle?.model ?? String.NA)
         
-        bodyTypeLbl.resultDescription(text: "BODY TYPE")
-        bodyTypeResult.result(text: "HatchBack")
+        detailLbl.resultDescription(text: String.Details)
+        detailResult.result(text: vm.vehicle?.details ?? String.NA)
         
-
-        engineLbl.resultDescription(text: "Engine")
-        engineResult.result(text: "1.25L")
+        bodyTypeLbl.resultDescription(text: String.BodyType)
+        bodyTypeResult.result(text:  vm.vehicle?.bodyType ?? String.NA)
         
-        yearLbl.resultDescription(text: "YEAR")
-        yearResult.result(text: "2017")
+        engineLbl.resultDescription(text: String.Engine)
+        engineResult.result(text: vm.vehicle?.engine ?? String.NA)
         
-        gearLbl.resultDescription(text: "GEAR")
-        gearResult.result(text: "Manual")
+        yearLbl.resultDescription(text: String.Year)
+        yearResult.result(text: vm.vehicle?.year ?? String.NA)
         
-        motLbl.resultDescription(text: "MOT")
-        motResult.result(text: "Valid Until")
+        gearLbl.resultDescription(text: String.Gear)
+        gearResult.result(text: vm.vehicle?.gearbox ?? String.NA)
         
-
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormat.Date_withOutDash.rawValue
+        let date = dateFormatter.date(from: vm.vehicle?.motExpiry ?? String.NA)
+        dateFormatter.dateFormat = DateFormat.Date_WithDash_dMy.rawValue
+        let resultString = dateFormatter.string(from: date!)
+        motLbl.resultDescription(text: String.Mot)
+        motResult.designable(fullText: "Valid Until \(String(describing: resultString))", text: "Valid Until \(String(describing: resultString))", text2: "", font:  UIFont(name: "Roboto-Light", size: 14)!, firstColor: UIColor(named: "green")!)
+        
         let hStackView = UIStackView()
         hStackView.axis  = NSLayoutConstraint.Axis.horizontal
-        hStackView.distribution  = UIStackView.Distribution.equalSpacing
-//
+        hStackView.distribution  = UIStackView.Distribution.fillEqually
+        
         hStackView.addArrangedSubview(makeLbl)
         hStackView.addArrangedSubview(modelLbl)
-
-
+        
         let hStackView2 = UIStackView()
         hStackView2.axis  = NSLayoutConstraint.Axis.horizontal
-        hStackView2.distribution  = UIStackView.Distribution.equalSpacing
-//
+        hStackView2.distribution  = UIStackView.Distribution.fillEqually
+        
         hStackView2.addArrangedSubview(makeResult)
         hStackView2.addArrangedSubview(modelResultLbl)
         
-
         let hStackView3 = UIStackView()
         hStackView3.axis  = NSLayoutConstraint.Axis.horizontal
-        hStackView3.distribution  = UIStackView.Distribution.equalSpacing
-//
+        hStackView3.distribution  = UIStackView.Distribution.fillEqually
+        
         hStackView3.addArrangedSubview(detailLbl)
         hStackView3.addArrangedSubview(bodyTypeLbl)
         
         let hStackView4 = UIStackView()
         hStackView4.axis  = NSLayoutConstraint.Axis.horizontal
-        hStackView4.distribution  = UIStackView.Distribution.equalSpacing
-//
+        hStackView4.distribution  = UIStackView.Distribution.fillEqually
+        
         hStackView4.addArrangedSubview(detailResult)
         hStackView4.addArrangedSubview(bodyTypeResult)
         
         let hStackView5 = UIStackView()
         hStackView5.axis  = NSLayoutConstraint.Axis.horizontal
-        hStackView5.distribution  = UIStackView.Distribution.equalSpacing
-//
+        hStackView5.distribution  = UIStackView.Distribution.fillEqually
+        
         hStackView5.addArrangedSubview(engineLbl)
         hStackView5.addArrangedSubview(yearLbl)
         
         let hStackView6 = UIStackView()
         hStackView6.axis  = NSLayoutConstraint.Axis.horizontal
-        hStackView6.distribution  = UIStackView.Distribution.equalSpacing
-//
+        hStackView6.distribution  = UIStackView.Distribution.fillEqually
+        
         hStackView6.addArrangedSubview(engineResult)
         hStackView6.addArrangedSubview(yearResult)
         
         let hStackView7 = UIStackView()
         hStackView7.axis  = NSLayoutConstraint.Axis.horizontal
-        hStackView7.distribution  = UIStackView.Distribution.equalSpacing
-//
+        hStackView7.distribution  = UIStackView.Distribution.fillEqually
+        
         hStackView7.addArrangedSubview(gearLbl)
         hStackView7.addArrangedSubview(motLbl)
         
         let hStackView8 = UIStackView()
         hStackView8.axis  = NSLayoutConstraint.Axis.horizontal
-        hStackView8.distribution  = UIStackView.Distribution.equalSpacing
-//
+        hStackView8.distribution  = UIStackView.Distribution.fillEqually
+        
         hStackView8.addArrangedSubview(gearResult)
         hStackView8.addArrangedSubview(motResult)
-
-
-//        hStackView.addArrangedSubview(modelLbl)
-
+        
         let vStackView = UIStackView()
         vStackView.axis  = NSLayoutConstraint.Axis.vertical
         vStackView.distribution  = UIStackView.Distribution.equalSpacing
         vStackView.spacing = 10
-
         
         vStackView.addArrangedSubviews([hStackView,hStackView2,hStackView3,hStackView4,hStackView5,hStackView6,hStackView7,hStackView8])
-        
-
-//        hStackView2.translatesAutoresizingMaskIntoConstraints = false
-//        hStackView.translatesAutoresizingMaskIntoConstraints = false
-        vStackView.translatesAutoresizingMaskIntoConstraints = false
-
-
-//        self.successView.addSubview(vStackView)
+        successView.addSubview(greenView)
         self.successView.addSubview(vStackView)
-//        self.successView.addSubview(stackView)
         
-
+        let margins2 = view.layoutMarginsGuide
+        vStackView.centerXAnchor.constraint(equalTo: margins2.centerXAnchor).isActive = true
+        vStackView.leadingAnchor.constraint(equalTo: successView.leadingAnchor, constant: 20).isActive = true
+        vStackView.topAnchor.constraint(equalTo: successView.topAnchor, constant: 20).isActive = true
+        greenView.widthAnchor.constraint(equalTo: successView.widthAnchor).isActive = true
+        greenView.translatesAutoresizingMaskIntoConstraints = false;
         
-
+        vStackView.translatesAutoresizingMaskIntoConstraints = false
         
     }
     
-    
     func configFailedView(){
         
-        let errorLbl = UILabel()
-        errorLbl.text = "Uh-oh! We Couldn't find a vehicle with that registration"
+        errorLbl.text = String.ErrorMsg
         errorLbl.numberOfLines = 2
         errorLbl.textColor = .white
-        let errorHint = UILabel()
-        errorHint.text = "Try Searching 'XXYYZZZ'..."
-        errorHint.textColor = .white
+        errorLbl.textAlignment = .center
         
+        errorHintLbl.text = String.ErrorHint
+        errorHintLbl.textColor = .white
+        errorHintLbl.textAlignment = .center
         failedStack.axis  = NSLayoutConstraint.Axis.vertical
         failedStack.spacing = 30
         
         failedStack.addArrangedSubview(errorLbl)
-        failedStack.addArrangedSubview(errorHint)
+        failedStack.addArrangedSubview(errorHintLbl)
         
+        self.scrollStackViewContainer.addSubview(failedStack)
+        
+        let margins = view.layoutMarginsGuide
+        failedStack.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
+        failedStack.topAnchor.constraint(equalTo: flagStackView.topAnchor, constant: 80).isActive = true
+        failedStack.leadingAnchor.constraint(equalTo: flagStackView.leadingAnchor, constant: 20).isActive = true
         failedStack.translatesAutoresizingMaskIntoConstraints = false
-        
     }
     
-    
 }
-
-

@@ -17,9 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         let controller = HomeVC()
         let navController = UINavigationController(rootViewController: controller)
-        navController.navigationBar.backgroundColor = UIColor(named: "green")
         window?.rootViewController = navController
         
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor(named: "green")
+            navController.navigationBar.standardAppearance = appearance;
+            navController.navigationBar.scrollEdgeAppearance = navController.navigationBar.standardAppearance
+        } else {
+            navController.navigationBar.barTintColor = UIColor(named: "green")
+            navController.navigationBar.isTranslucent = false
+            navController.navigationBar.backgroundColor = UIColor(named: "green")
+        }
+       
         return true
     }
 

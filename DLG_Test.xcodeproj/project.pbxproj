@@ -15,17 +15,23 @@
 		5C47DDC9296F21AD008221FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C47DDC7296F21AD008221FA /* Main.storyboard */; };
 		5C47DDCB296F21AF008221FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C47DDCA296F21AF008221FA /* Assets.xcassets */; };
 		5C47DDCE296F21AF008221FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C47DDCC296F21AF008221FA /* LaunchScreen.storyboard */; };
-		5C47DDD9296F21AF008221FA /* DLG_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47DDD8296F21AF008221FA /* DLG_TestTests.swift */; };
 		5C47DDE3296F21AF008221FA /* DLG_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47DDE2296F21AF008221FA /* DLG_TestUITests.swift */; };
 		5C47DDE5296F21AF008221FA /* DLG_TestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C47DDE4296F21AF008221FA /* DLG_TestUITestsLaunchTests.swift */; };
 		5C4DFE2B2973BD1C00E69F18 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4DFE2A2973BD1C00E69F18 /* SearchVC.swift */; };
 		5C4DFE2E2973BD5600E69F18 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4DFE2D2973BD5600E69F18 /* Extensions.swift */; };
+		5C52965A2976549700126C3E /* SearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5296592976549600126C3E /* SearchVM.swift */; };
+		5C52965F297656E500126C3E /* SearchVehicleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C52965E297656E500126C3E /* SearchVehicleTest.swift */; };
+		5C529664297657D300126C3E /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C529663297657D300126C3E /* Vehicle.swift */; };
+		5C5296662976599400126C3E /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5296652976599400126C3E /* URLProtocolMock.swift */; };
+		5C6585DB297798B300D7DBE3 /* Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6585DA297798B300D7DBE3 /* Handlers.swift */; };
 		5C66CBF929724CD50073FDA1 /* Oswald-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C66CBF329724CD50073FDA1 /* Oswald-SemiBold.ttf */; };
 		5C66CBFA29724CD50073FDA1 /* Oswald-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C66CBF429724CD50073FDA1 /* Oswald-ExtraLight.ttf */; };
 		5C66CBFB29724CD50073FDA1 /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C66CBF529724CD50073FDA1 /* Oswald-Medium.ttf */; };
 		5C66CBFC29724CD50073FDA1 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C66CBF629724CD50073FDA1 /* Oswald-Light.ttf */; };
 		5C66CBFD29724CD50073FDA1 /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C66CBF729724CD50073FDA1 /* Oswald-Bold.ttf */; };
 		5C66CBFE29724CD50073FDA1 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C66CBF829724CD50073FDA1 /* Oswald-Regular.ttf */; };
+		5C723B692976F1150072AA94 /* Localizator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C723B682976F1150072AA94 /* Localizator.swift */; };
+		5C723B6B2976F4F20072AA94 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C723B6A2976F4F20072AA94 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,18 +63,24 @@
 		5C47DDCD296F21AF008221FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C47DDCF296F21AF008221FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C47DDD4296F21AF008221FA /* DLG_TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DLG_TestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C47DDD8296F21AF008221FA /* DLG_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLG_TestTests.swift; sourceTree = "<group>"; };
 		5C47DDDE296F21AF008221FA /* DLG_TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DLG_TestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C47DDE2296F21AF008221FA /* DLG_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLG_TestUITests.swift; sourceTree = "<group>"; };
 		5C47DDE4296F21AF008221FA /* DLG_TestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLG_TestUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5C4DFE2A2973BD1C00E69F18 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		5C4DFE2D2973BD5600E69F18 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5C5296592976549600126C3E /* SearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVM.swift; sourceTree = "<group>"; };
+		5C52965E297656E500126C3E /* SearchVehicleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVehicleTest.swift; sourceTree = "<group>"; };
+		5C529663297657D300126C3E /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		5C5296652976599400126C3E /* URLProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMock.swift; sourceTree = "<group>"; };
+		5C6585DA297798B300D7DBE3 /* Handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handlers.swift; sourceTree = "<group>"; };
 		5C66CBF329724CD50073FDA1 /* Oswald-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-SemiBold.ttf"; sourceTree = "<group>"; };
 		5C66CBF429724CD50073FDA1 /* Oswald-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-ExtraLight.ttf"; sourceTree = "<group>"; };
 		5C66CBF529724CD50073FDA1 /* Oswald-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Medium.ttf"; sourceTree = "<group>"; };
 		5C66CBF629724CD50073FDA1 /* Oswald-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Light.ttf"; sourceTree = "<group>"; };
 		5C66CBF729724CD50073FDA1 /* Oswald-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Bold.ttf"; sourceTree = "<group>"; };
 		5C66CBF829724CD50073FDA1 /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
+		5C723B682976F1150072AA94 /* Localizator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizator.swift; sourceTree = "<group>"; };
+		5C723B6A2976F4F20072AA94 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,11 +147,10 @@
 		5C47DDC0296F21AD008221FA /* DLG_Test */ = {
 			isa = PBXGroup;
 			children = (
+				5C529662297657BB00126C3E /* Models */,
 				5C4DFE312973BDAC00E69F18 /* Resources */,
 				5C4DFE2F2973BD7600E69F18 /* Scenes */,
-				5C4DFE2C2973BD4400E69F18 /* Helpers */,
-				5C47DDC7296F21AD008221FA /* Main.storyboard */,
-				5C47DDCC296F21AF008221FA /* LaunchScreen.storyboard */,
+				5C4DFE2C2973BD4400E69F18 /* Utilities */,
 			);
 			path = DLG_Test;
 			sourceTree = "<group>";
@@ -147,7 +158,8 @@
 		5C47DDD7296F21AF008221FA /* DLG_TestTests */ = {
 			isa = PBXGroup;
 			children = (
-				5C47DDD8296F21AF008221FA /* DLG_TestTests.swift */,
+				5C52965E297656E500126C3E /* SearchVehicleTest.swift */,
+				5C5296652976599400126C3E /* URLProtocolMock.swift */,
 			);
 			path = DLG_TestTests;
 			sourceTree = "<group>";
@@ -161,12 +173,15 @@
 			path = DLG_TestUITests;
 			sourceTree = "<group>";
 		};
-		5C4DFE2C2973BD4400E69F18 /* Helpers */ = {
+		5C4DFE2C2973BD4400E69F18 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				5C4DFE2D2973BD5600E69F18 /* Extensions.swift */,
+				5C723B682976F1150072AA94 /* Localizator.swift */,
+				5C723B6A2976F4F20072AA94 /* Constants.swift */,
+				5C6585DA297798B300D7DBE3 /* Handlers.swift */,
 			);
-			path = Helpers;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		5C4DFE2F2973BD7600E69F18 /* Scenes */ = {
@@ -190,6 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				5C47DDCF296F21AF008221FA /* Info.plist */,
+				5C47DDC7296F21AD008221FA /* Main.storyboard */,
+				5C47DDCC296F21AF008221FA /* LaunchScreen.storyboard */,
 				5C16394F297248140093EFEF /* Fonts */,
 				5C47DDC1296F21AD008221FA /* AppDelegate.swift */,
 				5C47DDCA296F21AF008221FA /* Assets.xcassets */,
@@ -201,8 +218,17 @@
 			isa = PBXGroup;
 			children = (
 				5C4DFE2A2973BD1C00E69F18 /* SearchVC.swift */,
+				5C5296592976549600126C3E /* SearchVM.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		5C529662297657BB00126C3E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5C529663297657D300126C3E /* Vehicle.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,10 +371,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C529664297657D300126C3E /* Vehicle.swift in Sources */,
 				5C4DFE2B2973BD1C00E69F18 /* SearchVC.swift in Sources */,
+				5C6585DB297798B300D7DBE3 /* Handlers.swift in Sources */,
+				5C52965A2976549700126C3E /* SearchVM.swift in Sources */,
 				5C47DDC6296F21AD008221FA /* HomeVC.swift in Sources */,
 				5C47DDC2296F21AD008221FA /* AppDelegate.swift in Sources */,
+				5C723B692976F1150072AA94 /* Localizator.swift in Sources */,
 				5C4DFE2E2973BD5600E69F18 /* Extensions.swift in Sources */,
+				5C723B6B2976F4F20072AA94 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +387,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C47DDD9296F21AF008221FA /* DLG_TestTests.swift in Sources */,
+				5C52965F297656E500126C3E /* SearchVehicleTest.swift in Sources */,
+				5C5296662976599400126C3E /* URLProtocolMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
